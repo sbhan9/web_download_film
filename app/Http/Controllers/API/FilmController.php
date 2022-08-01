@@ -121,7 +121,35 @@ class FilmController extends Controller
                 'message' => 'film tidak ditemukan'
             ]);
         }
+    }
 
-        
+    public function tahun_realese(Request $request) 
+    {
+        $url = $this->http_request($this->url . 'years/' . $request->tahun . '/');
+        foreach ($url->find('div.content') as $movie) {
+            $tahun_realese[] = [
+                'title' => $movie->find('div.title h2', 0)->innertext,
+                'slug' => explode('/', $movie->find('a', 0)->href)[3],
+                'thumbnail' => $movie->find('div.poster img', 0)->src,
+                'desc' => [
+                    'rating' => str_replace(['&#13;', ' '], '', $movie->find('div.desc span', 0)->innertext),
+                    'tahun' => str_replace(['&#13;', ' '], '', $movie->find('div.desc span', 1)->innertext),
+                ]
+            ];
+        }
+
+        try {
+            return response()->json([
+                'author' => 'SProject Productive',
+                'status' => 200,
+                'result' => collect($tahun_realese)
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'author' => 'SProject Productive',
+                'status' => 404,
+                'message' => 'film tidak ditemukan'
+            ]);
+        }
     }
 }

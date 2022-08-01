@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\FilmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::get('/', function() {
+    return "API Download Film Sproject Productive";
 });
+Route::get('/home', [FilmController::class, 'index']);
+Route::get('/search', [FilmController::class, 'search']);
+Route::get('/detail', [FilmController::class, 'detail']);

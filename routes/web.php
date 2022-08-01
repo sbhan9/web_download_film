@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [FilmController::class, 'get_home']);
-Route::get('/detail/{slug}/', [FilmController::class, 'detail']);
+Route::get('/', function() {
+    return view('welcome');
+});

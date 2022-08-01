@@ -24,7 +24,7 @@ class FilmController extends Controller
         return HtmlDomParser::str_get_html($output);
     }
 
-    public function get_home()
+    public function index()
     {
         $url = $this->http_request($this->url);
         $wrapper = $url->find('div.content');
@@ -40,16 +40,23 @@ class FilmController extends Controller
             ];
         }
 
-        // return response()->json([
-        //     'author' => 'Sproject Productive',
-        //     'status' => 200,
-        //     'result' => collect($data_result)->skip(7)
-        // ]);
-        return collect($data_result)->skip(7);
+        return response()->json([
+            'author' => 'SProject Productive',
+            'status' => 200,
+            'result' => collect($data_result)->skip(7)
+        ]);
     }
 
-    public function detail($slug) { 
-        $url = $this->http_request($this->url . $slug . '/');
+    public function detail(Request $request) {
+        if( $request->slug == '' ) {
+            return response()->json([
+                'author' => 'SProject Productive',
+                'status' => 500,
+                'message' => 'slug tidak boleh kosong'
+            ]);
+        }
+
+        $url = $this->http_request($this->url . $request->slug . '/');
         $link_download_film = $url->find('div#dl_tab div.dl_links');
         foreach( $link_download_film as $link_download ) {
             $link_films[] = [
@@ -69,11 +76,52 @@ class FilmController extends Controller
             ],
             'link_download_film' => (isset($link_films) ? $link_films : 'tidak ada')
         ];
+
+        if( $data_film['title'] !== '' ) {
+            return response()->json([
+                'author' => 'SProject Productive',
+                'status' => 200,
+                'result' => collect($data_film)
+            ]);
+        } else {
+            return response()->json([
+                'author' => 'SProject Productive',
+                'status' => 404,
+                'message' => 'film tidak ditemukan'
+            ]);
+        }
         
-        return response()->json([
-            'author' => 'Sproject Productive',
-            'status' => 200,
-            'result' => $data_film
-        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $url = $this->http_request($this->url . '?s=' . $request->q);
+        foreach ($url->find('div.content') as $movie) {
+            $data_search[] = [
+                'title' => $movie->find('div.title h2', 0)->innertext,
+                'slug' => explode('/', $movie->find('a', 0)->href)[3],
+                'thumbnail' => $movie->find('div.poster img', 0)->src,
+                'desc' => [
+                    'rating' => str_replace(['&#13;', ' '], '', $movie->find('div.desc span', 0)->innertext),
+                    'tahun' => str_replace(['&#13;', ' '], '', $movie->find('div.desc span', 1)->innertext),
+                ]
+            ];
+        }
+
+        try {
+            return response()->json([
+                'author' => 'SProject Productive',
+                'status' => 200,
+                'result' => collect($data_search)
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'author' => 'SProject Productive',
+                'status' => 404,
+                'message' => 'film tidak ditemukan'
+            ]);
+        }
+
+        
     }
 }

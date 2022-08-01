@@ -40,15 +40,11 @@ class FilmController extends Controller
             ];
         }
 
-        return response()->json([
-            'author' => 'SProject Productive',
-            'status' => 200,
-            'result' => collect($data_result)->skip(7)
-        ]);
+        return collect($data_result)->skip(7);
     }
 
-    public function detail(Request $request) {
-        if( $request->slug == '' ) {
+    public function detail($slug) {
+        if( $slug == '' ) {
             return response()->json([
                 'author' => 'SProject Productive',
                 'status' => 500,
@@ -56,7 +52,7 @@ class FilmController extends Controller
             ]);
         }
 
-        $url = $this->http_request($this->url . $request->slug . '/');
+        $url = $this->http_request($this->url . $slug . '/');
         $link_download_film = $url->find('div#dl_tab div.dl_links');
         foreach( $link_download_film as $link_download ) {
             $link_films[] = [
@@ -78,11 +74,7 @@ class FilmController extends Controller
         ];
 
         if( $data_film['title'] !== '' ) {
-            return response()->json([
-                'author' => 'SProject Productive',
-                'status' => 200,
-                'result' => collect($data_film)
-            ]);
+            return collect($data_film);
         } else {
             return response()->json([
                 'author' => 'SProject Productive',
@@ -109,11 +101,7 @@ class FilmController extends Controller
         }
 
         try {
-            return response()->json([
-                'author' => 'SProject Productive',
-                'status' => 200,
-                'result' => collect($data_search)
-            ]);
+            return collect($data_search);
         } catch (\Throwable $th) {
             return response()->json([
                 'author' => 'SProject Productive',
@@ -139,16 +127,12 @@ class FilmController extends Controller
         }
 
         try {
-            return response()->json([
-                'author' => 'SProject Productive',
-                'status' => 200,
-                'result' => collect($tahun_realese)
-            ]);
+            return collect($tahun_realese)->skip(7);
         } catch (\Throwable $th) {
             return response()->json([
                 'author' => 'SProject Productive',
-                'status' => 404,
-                'message' => 'film tidak ditemukan'
+                'status' => 400,
+                'message' => 'tahun realese tidak boleh kosong'
             ]);
         }
     }

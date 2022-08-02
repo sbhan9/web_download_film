@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/detail', [HomeController::class, 'detail']);
+Route::get('/search', [HomeController::class, 'search']);

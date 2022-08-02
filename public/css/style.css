@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+/* navbar */
 .header-2-3 .modal-backdrop.show {
     background-color: #707092;
     opacity: 0.6;
@@ -198,7 +199,9 @@
         width: 50%;
     }
 }
+/* end navbar */
 
+/* navbar search */
 .search {
     width: 300px;
     height: 40px;
@@ -219,3 +222,89 @@
     border-radius: 50px;
     background-color: #dce2f4;
 }
+/* end navbar search */
+
+/* footer */
+.footer-2-3 .list-space {
+    margin-bottom: 1.25rem;
+}
+
+.footer-2-3 .footer-text-title {
+    font: 600 1.5rem Poppins, sans-serif;
+    margin-bottom: 1.5rem;
+}
+
+.footer-2-3 .list-menu {
+    color: #707092;
+    text-decoration: none !important;
+}
+
+.footer-2-3 .list-menu:hover {
+    color: #ffffff;
+}
+
+.footer-2-3 hr.hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid rgba(46, 46, 90, 1);
+}
+
+.footer-2-3 .border-color {
+    color: #707092;
+}
+
+.footer-2-3 .footer-link {
+    color: #707092;
+}
+
+.footer-2-3 .footer-link:hover {
+    color: #ffffff;
+}
+
+.footer-2-3 .social-media-c:hover circle,
+.footer-2-3 .social-media-p:hover path {
+    fill: #ffffff;
+}
+
+.footer-2-3 .footer-info-space {
+    padding-top: 3rem;
+}
+
+.footer-2-3 .list-footer {
+    padding: 5rem 1rem 3rem 1rem;
+}
+
+.footer-2-3 .info-footer {
+    padding: 0 1rem 3rem;
+}
+
+@media (min-width: 576px) {
+    .footer-2-3 .list-footer {
+        padding: 5rem 2rem 3rem 2rem;
+    }
+
+    .footer-2-3 .info-footer {
+        padding: 0 2rem 3rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-2-3 .list-footer {
+        padding: 5rem 4rem 6rem 4rem;
+    }
+
+    .footer-2-3 .info-footer {
+        padding: 0 4rem 3rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .footer-2-3 .list-footer {
+        padding: 5rem 6rem 6rem 6rem;
+    }
+
+    .footer-2-3 .info-footer {
+        padding: 0 6rem 3rem;
+    }
+}
+/* end footer */

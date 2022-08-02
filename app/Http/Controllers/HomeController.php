@@ -25,7 +25,7 @@ class HomeController extends Controller
             ];
         }
 
-        return view('home/index', [
+        return view('home.index', [
             'title' => 'Sproject Film - Home',
             'films' => $films
         ]);
@@ -35,5 +35,31 @@ class HomeController extends Controller
     {
         $data_film = $this->data_film->detail($request->slug);
         dd($data_film);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $this->data_film->search($request->q);
+        try {
+            foreach( $search as $h ) {
+                $films[] = [
+                    'title' => $h['title'],
+                    'slug' => $h['slug'],
+                    'thumbnail' => $h['thumbnail'],
+                    'desc' => $h['desc'],
+                ];
+            }
+
+            return view('home.index', [
+                'title' => 'Search - ' . $request->q,
+                'films' => $films
+            ]);
+        } catch (\Throwable $th) {
+            return view('error.404', [
+                'title' => 'Search - ' . $request->q,
+                'message_error' => 'Pencarian ' . $request->q . ' tidak ditemukan',
+                'message' => 'Beri kami kata kunci yang spesifik. Terimakasih'
+            ]);
+        }
     }
 }

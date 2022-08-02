@@ -85,9 +85,9 @@ class FilmController extends Controller
         
     }
 
-    public function search(Request $request)
+    public function search($query)
     {
-        $url = $this->http_request($this->url . '?s=' . $request->q);
+        $url = $this->http_request($this->url . '?s=' . $query);
         foreach ($url->find('div.content') as $movie) {
             $data_search[] = [
                 'title' => $movie->find('div.title h2', 0)->innertext,

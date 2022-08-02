@@ -112,11 +112,12 @@
                             class="text-decoration-none text-white fs-3"><i class="bi bi-github"></i></a>
                     </div>
                     <nav class="mx-auto d-flex flex-wrap align-items-center justify-content-center gap-4">
-                        <a href="https://kosongempat.my.id" class="footer-link" style="text-decoration: none">Website
+                        <a href="https://kosongempat.my.id" target="_blank" class="footer-link"
+                            style="text-decoration: none">Website
                             Pribadi</a>
                         <span>|</span>
-                        <a href="https://sbhan9.github.io" class="footer-link" style="text-decoration: none">Landing
-                            Page</a>
+                        <a href="https://sbhan9.github.io" class="footer-link" style="text-decoration: none"
+                            target="_blank">Tentang Pembuat</a>
                     </nav>
                     <nav class="d-flex flex-lg-row flex-column align-items-center justify-content-center">
                         <p style="margin: 0">Sproject Productive 2022</p>

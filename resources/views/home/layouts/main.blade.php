@@ -32,11 +32,6 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content border-0" style="background-color: #141432">
                             <div class="modal-header border-0" style="padding: 2rem; padding-bottom: 0">
-                                <a class="modal-title" id="targetModalLabel">
-                                    <img style="margin-top: 0.5rem"
-                                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-3.png"
-                                        alt="" />
-                                </a>
                                 <button type="button" class="close btn-close text-white" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>

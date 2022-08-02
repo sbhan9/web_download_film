@@ -42,7 +42,7 @@
                     @else
                         @foreach ($film['link_download_film'] as $link)
                             <a href="{{ $link['link_download'] }}" target="_blank"
-                                class="bg-primary text-decoration-none rounded px-1 py-1 text-white ">Download</a>
+                                class="bg-primary text-decoration-none rounded px-1 py-1 text-white d-inline-block mt-2">Download</a>
                         @endforeach
                     @endif
                 </div>

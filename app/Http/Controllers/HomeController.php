@@ -88,13 +88,13 @@ class HomeController extends Controller
             }
 
             return view('home.index', [
-                'title' => 'Tahun release - ' . $request->tahun,
+                'title' => 'Tahun Release - ' . $request->tahun,
                 'films' => $films
             ]);
         } catch (\Throwable $th) {
             return view('error.404', [
-                'title' => 'Tahun release - ' . $request->tahun,
-                'message_error' => 'Tahun release ' . $request->tahun . ' tidak ditemukan',
+                'title' => 'Tahun Release - ' . $request->tahun,
+                'message_error' => 'Tahun Release ' . $request->tahun . ' tidak ditemukan',
                 'message' => 'Beri kami tahun release yang spesifik. Terimakasih'
             ]);
         }

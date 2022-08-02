@@ -8,10 +8,10 @@
                         <div class="position-absolute mt-2 ms-2">
                             <span class="bg-warning px-1 fs-5 fw-bold rounded">{{ $film['desc']['rating'] }}</span>
                         </div>
-                        <h5 class="fs-4 position-absolute fixed-bottom text-center  fw-bold text-white">
+                        <h5 class="fs-4 position-absolute fixed-bottom text-center fw-bold text-white">
                             {{ $film['title'] }} ({{ $film['desc']['tahun'] }})
                         </h5>
-                        <img src="{{ $film['thumbnail'] }}" alt="" class="img-fluid rounded">
+                        <img src="{{ $film['thumbnail'] }}" alt="{{ $film['title'] }}" class=" img-fluid rounded">
                     </a>
                 </div>
             </div>

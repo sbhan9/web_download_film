@@ -111,11 +111,11 @@ class FilmController extends Controller
         }
     }
 
-    public function tahun_realese(Request $request) 
+    public function tahun_release($tahun) 
     {
-        $url = $this->http_request($this->url . 'years/' . $request->tahun . '/');
+        $url = $this->http_request($this->url . 'years/' . $tahun . '/');
         foreach ($url->find('div.content') as $movie) {
-            $tahun_realese[] = [
+            $tahun_release[] = [
                 'title' => $movie->find('div.title h2', 0)->innertext,
                 'slug' => explode('/', $movie->find('a', 0)->href)[3],
                 'thumbnail' => $movie->find('div.poster img', 0)->src,
@@ -127,12 +127,12 @@ class FilmController extends Controller
         }
 
         try {
-            return collect($tahun_realese)->skip(7);
+            return collect($tahun_release)->skip(7);
         } catch (\Throwable $th) {
             return response()->json([
                 'author' => 'SProject Productive',
                 'status' => 400,
-                'message' => 'tahun realese tidak boleh kosong'
+                'message' => 'tahun release tidak boleh kosong'
             ]);
         }
     }

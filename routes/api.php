@@ -21,5 +21,5 @@ Route::get('/', function() {
 });
 Route::get('/home', [FilmController::class, 'index']);
 Route::get('/search', [FilmController::class, 'search']);
-Route::get('/detail', [FilmController::class, 'detail']);
+Route::get('/release', [FilmController::class, 'release']);
 Route::get('/realese', [FilmController::class, 'tahun_realese']);

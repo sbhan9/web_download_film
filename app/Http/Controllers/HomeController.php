@@ -34,7 +34,18 @@ class HomeController extends Controller
     public function detail(Request $request)
     {
         $data_film = $this->data_film->detail($request->slug);
-        dd($data_film);
+        try {
+            return view('home.detail', [
+                'title' => 'Detail - ' . $data_film['title'],
+                'film' => $data_film
+            ]);
+        } catch (\Throwable $th) {
+            return view('error.404', [
+                'title' => 'Detail - ' . $request->slug,
+                'message_error' => 'Detail Film ' . $request->slug . ' tidak ditemukan',
+                'message' => 'Beri kami detail film yang spesifik. Terimakasih'
+            ]);
+        }
     }
 
     public function search(Request $request)
@@ -59,6 +70,32 @@ class HomeController extends Controller
                 'title' => 'Search - ' . $request->q,
                 'message_error' => 'Pencarian ' . $request->q . ' tidak ditemukan',
                 'message' => 'Beri kami kata kunci yang spesifik. Terimakasih'
+            ]);
+        }
+    }
+
+    public function tahun_release(Request $request)
+    {
+        $tahun_release = $this->data_film->tahun_release($request->tahun);
+        try {
+            foreach( $tahun_release as $r ) {
+                $films[] = [
+                    'title' => $r['title'],
+                    'slug' => $r['slug'],
+                    'thumbnail' => $r['thumbnail'],
+                    'desc' => $r['desc'],
+                ];
+            }
+
+            return view('home.index', [
+                'title' => 'Tahun release - ' . $request->tahun,
+                'films' => $films
+            ]);
+        } catch (\Throwable $th) {
+            return view('error.404', [
+                'title' => 'Tahun release - ' . $request->tahun,
+                'message_error' => 'Tahun release ' . $request->tahun . ' tidak ditemukan',
+                'message' => 'Beri kami tahun release yang spesifik. Terimakasih'
             ]);
         }
     }
